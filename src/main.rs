@@ -45,8 +45,8 @@ fn main() -> Result<(), &'static str> {
             };
 
             match key {
-                Some(key) => commands::confirm::confirm_encrypt(user_email_addr, wks_email_addr, nonce, key),
-                None => commands::confirm::confirm_plaintext(user_email_addr, wks_email_addr, nonce)
+                Some(key) => commands::confirm::confirm_encrypt(&user_email_addr, &wks_email_addr, nonce, key),
+                None => commands::confirm::confirm_plaintext(&user_email_addr, &wks_email_addr, nonce)
             }
         },
         None => Err("No subcommand provided.")
