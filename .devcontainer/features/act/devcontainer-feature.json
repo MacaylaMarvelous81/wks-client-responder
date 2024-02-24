@@ -1,0 +1,16 @@
+{
+	"name": "Act",
+	"id": "act",
+	"version": "1.0.0",
+	"description": "Installs act, a tool for running GitHub Actions locally",
+	"options": {
+		"release": {
+			"type": "string",
+			"proposals": [
+				"latest"
+			],
+			"default": "latest",
+			"description": "The version of act to install. Specify a GitHub release."
+		}
+	}
+}
