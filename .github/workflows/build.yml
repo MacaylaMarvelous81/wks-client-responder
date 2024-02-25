@@ -1,0 +1,43 @@
+name: Build
+on:
+  pull_request:
+  push:
+    branches:
+      - "**"
+  workflow_call:
+    inputs:
+      ref:
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default ref
+        if: ${{ inputs.ref == '' }}
+        uses: actions/checkout@v4.1.1
+      - name: Checkout requested ref
+        if: ${{ inputs.ref != '' }}
+        uses: actions/checkout@v4.1.1
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: actions/cache@v4.0.0
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - run: cargo build --release
+      - run: tar -czf wks-client-responder_release.tar.gz target/release/wks-client-responder
+      - uses: actions/upload-artifact@v4.3.1
+        with:
+          name: release
+          path: wks-client-responder_release.tar.gz
