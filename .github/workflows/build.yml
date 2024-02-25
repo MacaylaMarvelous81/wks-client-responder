@@ -21,8 +21,12 @@ jobs:
   build:
     strategy:
       matrix:
-        target: [x86_64-unknown-linux-gnu, aarch64-unknown-linux-gnu, x86_64-apple-darwin, aarch64-apple-darwin]
-    runs-on: ubuntu-latest
+        target:
+          - x86_64-unknown-linux-gnu
+          - aarch64-unknown-linux-gnu
+          - x86_64-apple-darwin
+          - aarch64-apple-darwin
+    runs-on: ${{ endsWith(matrix.target, 'apple-darwin') && 'macos-latest' || 'ubuntu-latest' }}
     steps:
       - name: Checkout default ref
         if: ${{ inputs.ref == '' }}
