@@ -24,8 +24,6 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - uses: actions/download-artifact@v4.1.2
-        with:
-          name: release
       - name: Determine release type
         id: release_type
         run: |
@@ -49,7 +47,7 @@ jobs:
           body: ${{ steps.notes.outputs.content }}
           draft: false
           prerelease: ${{ steps.release_type.outputs.prerelease }}
-          files: wks-client-responder_release.tar.gz
+          files: wks-client-responder_*_release.tar.gz
           name: wks-client-responder ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
           fail_on_unmatched_files: false
