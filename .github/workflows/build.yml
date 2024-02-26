@@ -39,7 +39,7 @@ jobs:
           ref: ${{ inputs.ref }}
       - name: Install linker for ${{ matrix.target.name }}
         if: ${{ matrix.target.pkg != '' }}
-        uses: awalsh128/cache-apt-pkgs-actions@v1.4.1
+        uses: awalsh128/cache-apt-pkgs-action@v1.4.1
         with:
           packages: ${{ matrix.target.pkg }}
           version: 1
