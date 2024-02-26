@@ -57,7 +57,7 @@ jobs:
             target/
           key: ${{ matrix.target.name }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - run: cargo build --release --target ${{ matrix.target.name }}
-      - run: tar -czf wks-client-responder_${{ matrix.target_name }}_release.tar.gz -C target/${{ matrix.target.name }}/release wks-client-responder
+      - run: tar -czf wks-client-responder_${{ matrix.target.name }}_release.tar.gz -C target/${{ matrix.target.name }}/release wks-client-responder
       - uses: actions/upload-artifact@v4.3.1
         with:
           name: ${{ matrix.target.name }}
