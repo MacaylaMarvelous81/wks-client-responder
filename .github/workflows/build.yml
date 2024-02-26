@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         target: [
-          {name: "x86_64-unknown-linux-gnu", pkg: "gcc-x86_64-linux-gnu"},
+          {name: "x86_64-unknown-linux-gnu", pkg: "gcc-x86-64-linux-gnu"},
           {name: "aarch64-unknown-linux-gnu", pkg: "gcc-aarch64-linux-gnu"},
           {name: "x86_64-apple-darwin", pkg: ""},
           {name: "aarch64-apple-darwin", pkg: ""}
